@@ -27,7 +27,6 @@ class StackedChart {
 		this.yValue = _yValue;
 		this.yTotal = _yTotal;
 
-		console.log(this.data);
 		//calculations
 		this.maxNum = this.findMax();
 		this.minNum = this.findMin();
@@ -41,7 +40,6 @@ class StackedChart {
 		//colour palette
 		this.palette = ["#b687d6", "#c59fde", "#d3b7e6"];
 	}
-
 	findMax() {
 		let maxNum = 0;
 		//gets the maximum number
@@ -50,9 +48,6 @@ class StackedChart {
 				maxNum = int(this.data.rows[x].obj[this.yTotal]);
 			}
 		}
-		// console.log(maxNum);
-
-
 		// rounds the number so the multiply into nicer whole numbers
 		for (let x = maxNum; x < 1000000; x++) {
 			if (x % this.ticksNum == 0 && x % this.rounding == 0) {
@@ -69,12 +64,10 @@ class StackedChart {
 			if (this.data.rows[x].obj[this.yValue[x]]) {
 				numsArray.push(this.data.rows[x].obj[this.yValue[x]])
 				minNum = min(this.data.rows[x].obj[this.yValue[x]]);
-				// console.log(this.minNum);
 			}
 		}
 		minNum=Math.min(...numsArray)
 		return minNum;
-
 	}
 	render() {
 		push();
@@ -102,7 +95,6 @@ class StackedChart {
 			}
 			translate(this.barSpacing * x, 0);
 			pop();
-
 			//X axis year labels
 			noStroke();
 			fill(230);
@@ -130,12 +122,10 @@ class StackedChart {
 				let current = this.yValue[l];
 				let xPos = this.width + 30;
 				let yPos = -this.height;
-
 				//circles
 				fill(color(this.palette[l % this.palette.length]));
 				stroke(255);
 				circle(xPos - 15, yPos, 10);
-
 				// current ledgend
 				textAlign(LEFT, RIGHT);
 				textSize(16);
@@ -159,7 +149,6 @@ class StackedChart {
 		line(0, 0, this.width, 0);
 		//Y Axis
 		line(0, 0, 0, -this.height);
-
 		//Chart name
 		noStroke();
 		fill(230);
@@ -174,15 +163,12 @@ class StackedChart {
 			strokeWeight(1);
 			stroke(230);
 			line(0, -this.tickSpace * t, -10, -this.tickSpace * t);
-
 			//horizontal lines
 			strokeWeight(0.5);
 			stroke(160);
 			line(0, t * -this.tickSpace, this.width, t * -this.tickSpace);
-
 			//number labels
 			let labelNums = this.maxNum / this.ticksNum;
-
 			if (this.labels == 1) {
 				noStroke();
 				fill(230);

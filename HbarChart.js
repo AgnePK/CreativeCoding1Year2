@@ -41,7 +41,6 @@ class HbarChart {
 
 	findMax() {
 		let maxNum = 0;
-
 		//gets the maximum number
 		for (let x = maxNum; x < this.data.getRowCount(); x++) {
 			if (int(this.data.rows[x].obj[this.yValue]) > maxNum) {
@@ -67,6 +66,7 @@ class HbarChart {
 	}
 	bars() {
 		fill(91, 166, 150);
+		//for the horizontal chart i had to switch around the position of the x and y values
 		push();
 		translate(this.margin, 0);
 		for (let x = 0; x < this.data.getRowCount(); x++) {
